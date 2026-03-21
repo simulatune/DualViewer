@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+.eggs/
+
+# PyInstaller
+build/
+dist/
+
+# Virtual env
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Video files & large binaries
+example_video/
+resources/ffmpeg
+resources/ffprobe
+resources/ffmpeg.exe
+resources/ffprobe.exe
+*.mp4
+
