@@ -78,6 +78,10 @@ pip install -r requirements.txt
 python main.py
 ```
 
+> On Linux/Wayland, DualViewer prefers XWayland before Qt starts: when `DISPLAY` is available it sets `QT_QPA_PLATFORM=xcb` (pure Wayland keeps `xcb;wayland` as a fallback), forces `QT_MEDIA_BACKEND=ffmpeg`, and disables Qt FFmpeg hardware texture conversion/decoding by default to avoid driver-dependent artifacts, black frames, misplacement, or repaint glitches on different Ubuntu machines. To test native Wayland, run `DUALVIEWER_NATIVE_WAYLAND=1 python main.py`; to re-enable the hardware video path, run `DUALVIEWER_ENABLE_HW_VIDEO=1 python main.py`; you can also override Qt manually with `QT_QPA_PLATFORM=wayland python main.py`.
+>
+> If a pre-built binary reports a missing `xcb` platform plugin or dependency on Ubuntu, install the common runtime packages first: `sudo apt install xwayland libxcb-cursor0 libxkbcommon-x11-0`.
+
 ### Download Pre-built
 
 Go to [Releases](https://github.com/simulatune/DualViewer/releases) to download:

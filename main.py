@@ -1,20 +1,15 @@
 """DualViewer — 应用入口 / Entry point."""
 
 import faulthandler
-import os
 import sys
 
 # Windows 以 console=False 打包后 sys.stderr 为 None，需要守护
 if sys.stderr is not None:
     faulthandler.enable()
 
-# Linux 下如果没有设置 locale，可能导致中文标题乱码
-if sys.platform == "linux":
-    for var in ("LC_ALL", "LC_CTYPE", "LANG"):
-        if os.environ.get(var):
-            break
-    else:
-        os.environ["LC_ALL"] = "C.UTF-8"
+from core.qt_compat import configure_qt_environment
+
+configure_qt_environment()
 
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication
