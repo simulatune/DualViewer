@@ -78,6 +78,10 @@ pip install -r requirements.txt
 python main.py
 ```
 
+> Linux/Wayland 下会在启动前优先使用 XWayland：检测到 `DISPLAY` 时设置 `QT_QPA_PLATFORM=xcb`（纯 Wayland 环境保留 `xcb;wayland` 兜底），并固定 `QT_MEDIA_BACKEND=ffmpeg`，默认关闭 Qt FFmpeg 硬件纹理转换/硬解码，以规避不同 Ubuntu / 显卡驱动上的花屏、黑屏、错位或刷新异常。需要测试原生 Wayland 时，可运行 `DUALVIEWER_NATIVE_WAYLAND=1 python main.py`；需要重新启用硬件视频路径时，可运行 `DUALVIEWER_ENABLE_HW_VIDEO=1 python main.py`；也可以用 `QT_QPA_PLATFORM=wayland python main.py` 手动覆盖。
+>
+> 如果预构建版本在 Ubuntu 上提示 `xcb` platform plugin 或依赖缺失，请先安装常见运行库：`sudo apt install xwayland libxcb-cursor0 libxkbcommon-x11-0`。
+
 ### 下载预构建版本
 
 前往 [Releases](https://github.com/simulatune/DualViewer/releases) 下载对应平台的文件：
